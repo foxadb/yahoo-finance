@@ -8,3 +8,7 @@ set(CMAKE_CXX_STANDARD 11)
 file(GLOB LIB_SOURCES src/*.cpp)
 file(GLOB LIB_HEADERS src/*.hpp )
 add_library(yahoo-finance ${LIB_SOURCES} ${LIB_HEADERS})
+
+# Add example executable
+add_executable(example src/example.cpp)
+target_link_libraries(example yahoo-finance curl)
