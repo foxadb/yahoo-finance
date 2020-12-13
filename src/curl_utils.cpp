@@ -6,14 +6,14 @@
 #include <fstream>
 #include <boost/algorithm/string/replace.hpp>
 
-void saveYahooCredentials(const char* filename, std::string *crumb, std::string *cookie) {
+void saveYahooCredentials(const char* filename, const std::string &crumb, const std::string &cookie) {
     // Open cookie file
     std::ofstream file(filename);
 
     // Save update time, crumb and cookie
     file << currentEpoch() << std::endl;
-    file << *crumb << std::endl;
-    file << *cookie << std::endl;
+    file << crumb << std::endl;
+    file << cookie << std::endl;
 
     // Close cookie file
     file.close();
@@ -30,24 +30,24 @@ std::time_t readCookieTime(const char* filename) {
     return date;
 }
 
-void readCrumbCredential(const char* filename, std::string *crumb) {
+void readCrumbCredential(const char* filename, std::string &crumb) {
     // Open cookie file
     std::ifstream file(filename);
 
     // Read the crumb
-    file >> *crumb;
-    *crumb = "";
-    file >> *crumb;
+    file >> crumb;
+    crumb.clear();
+    file >> crumb;
 }
 
-void readCookieCredential(const char* filename, std::string *cookie) {
+void readCookieCredential(const char* filename, std::string &cookie) {
     // Open cookie file
     std::ifstream file(filename);
 
     // Read the cookie
-    file >> *cookie >> *cookie;
-    *cookie = "";
-    file >> *cookie;
+    file >> cookie >> cookie;
+    cookie.clear();
+    file >> cookie;
 }
 
 bool needNewCookie(const char* filename, std::time_t time) {
@@ -64,9 +64,9 @@ size_t writeCallback(char *content, size_t size, size_t nmemb, void *userdata) {
     return size * nmemb;
 }
 
-void getYahooCrumbCookie(std::string url,
-                         std::string *crumb,
-                         std::string *cookie) {
+void getYahooCrumbCookie(const std::string& url,
+                         std::string &crumb,
+                         std::string &cookie) {
     const char* credentialFile = "/tmp/yahoo-finance-credentials";
     const char* cookieFile = "/tmp/yahoo-finance-cookie";
 
@@ -91,8 +91,8 @@ void getYahooCrumbCookie(std::string url,
             curl_easy_cleanup(curl);
         }
 
-        *crumb = extractYahooCrumb(responseBuffer);
-        *cookie = extractYahooCookie(cookieFile);
+        crumb = extractYahooCrumb(responseBuffer);
+        cookie = extractYahooCookie(cookieFile);
 
         // Save crumb and cookie values
         saveYahooCredentials(credentialFile, crumb, cookie);
@@ -103,7 +103,7 @@ void getYahooCrumbCookie(std::string url,
     }
 }
 
-std::string extractYahooCrumb(std::string code) {
+std::string extractYahooCrumb(const std::string& code) {
     // Find the CrumbStore location
     size_t found = code.find("CrumbStore");
 
@@ -143,11 +143,11 @@ std::string downloadYahooCsv(std::string symbol,
                              std::time_t period1,
                              std::time_t period2,
                              std::string interval,
-                             std::string *crumb,
-                             std::string *cookie) {
-    std::stringstream ss1; 
-    ss1 << period1; 
-    std::stringstream ss2; 
+                             const std::string &crumb,
+                             const std::string &cookie) {
+    std::stringstream ss1;
+    ss1 << period1;
+    std::stringstream ss2;
     ss2 << period2;
 
     std::string url = "https://query1.finance.yahoo.com/v7/finance/download/"
@@ -156,14 +156,14 @@ std::string downloadYahooCsv(std::string symbol,
             + "&period2=" + ss2.str()
             + "&interval=" + interval
             + "&events=history"
-            + "&crumb=" + *crumb;
+            + "&crumb=" + crumb;
 
     CURL* curl = curl_easy_init();
     std::string responseBuffer;
 
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-        curl_easy_setopt(curl, CURLOPT_COOKIE, cookie->c_str());
+        curl_easy_setopt(curl, CURLOPT_COOKIE, cookie.c_str());
 
         // Write result into the buffer
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writeCallback);

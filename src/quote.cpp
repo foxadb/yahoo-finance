@@ -20,7 +20,7 @@ size_t Quote::nbSpots() {
     return this->spots.size();
 }
 
-Spot Quote::getSpot(size_t i) {
+Spot Quote::getSpot(size_t i) const {
     if (i < this->spots.size()) {
         return this->spots[i];
     }
@@ -32,9 +32,9 @@ Spot Quote::getSpot(size_t i) {
     throw std::invalid_argument(error);
 }
 
-Spot Quote::getSpot(std::time_t date) {
-    for (std::vector<Spot>::iterator it = this->spots.begin();
-         it != this->spots.end();
+Spot Quote::getSpot(std::time_t date) const {
+    for (std::vector<Spot>::const_iterator it = this->spots.cbegin();
+         it != this->spots.cend();
          ++it) {
         if (it->getDate() == date) {
             return *it;
@@ -44,9 +44,9 @@ Spot Quote::getSpot(std::time_t date) {
     throw std::invalid_argument(error);
 }
 
-Spot Quote::getSpot(std::string date) {
-    for (std::vector<Spot>::iterator it = this->spots.begin();
-         it != this->spots.end();
+Spot Quote::getSpot(std::string date) const {
+    for (std::vector<Spot>::const_iterator it = this->spots.cbegin();
+         it != this->spots.cend();
          ++it) {
         if (it->getDateToString() == date) {
             return *it;
@@ -56,9 +56,9 @@ Spot Quote::getSpot(std::string date) {
     throw std::invalid_argument(error);
 }
 
-void Quote::printSpots() {
-    for (std::vector<Spot>::iterator it = this->spots.begin();
-         it != this->spots.end();
+void Quote::printSpots() const {
+    for (std::vector<Spot>::const_iterator it = this->spots.cbegin();
+         it != this->spots.cend();
          ++it) {
         std::cout << it->toString() << std::endl;
     }
@@ -76,8 +76,8 @@ std::string Quote::getHistoricalCsv(std::time_t period1,
             + "/?p="
             + this->symbol;
 
-    std::string *crumb = new std::string;
-    std::string *cookie = new std::string;
+    std::string crumb;
+    std::string cookie;
 
     // Get the Crumb and Cookie from Yahoo Finance
     getYahooCrumbCookie(url, crumb, cookie);
@@ -87,8 +87,6 @@ std::string Quote::getHistoricalCsv(std::time_t period1,
                 this->symbol, period1, period2, interval, crumb, cookie);
 
     // Free memory
-    delete crumb;
-    delete cookie;
 
     // Return the csv
     return csv;

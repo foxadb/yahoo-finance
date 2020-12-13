@@ -38,32 +38,32 @@ Spot::Spot(std::string date, double price){
 
 Spot::~Spot() {}
 
-std::time_t Spot::getDate() {
+std::time_t Spot::getDate() const {
     return this->date;
 }
 
-std::string Spot::getDateToString() {
+std::string Spot::getDateToString() const {
     return epochToDate(this->date);
 }
 
-double Spot::getOpen() {
+double Spot::getOpen() const {
     return this->open;
 }
 
-double Spot::getHigh() {
+double Spot::getHigh() const {
     return this->high;
 }
 
-double Spot::getLow() {
+double Spot::getLow() const {
     return this->low;
 }
 
-double Spot::getClose() {
+double Spot::getClose() const {
     return this->close;
 }
 
 
-std::string Spot::toString() {
+std::string Spot::toString() const {
     std::ostringstream osOpen;
     osOpen << this->open;
     std::ostringstream osHigh;
@@ -80,6 +80,6 @@ std::string Spot::toString() {
             + " }";
 }
 
-void Spot::printSpot() {
+void Spot::printSpot() const {
     std::cout << this->toString() << std::endl;
 }

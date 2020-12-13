@@ -34,26 +34,26 @@ public:
      * @param i spot index
      * @return spots(i)
      */
-    Spot getSpot(size_t i);
+    Spot getSpot(size_t i) const;
 
     /**
      * @brief Spot getter by date
      * @param date Spot date
      * @return spots(date)
      */
-    Spot getSpot(std::time_t date);
+    Spot getSpot(std::time_t date) const;
 
     /**
      * @brief Spot getter by date
      * @param date Spot date
      * @return spots(date)
      */
-    Spot getSpot(std::string date);
+    Spot getSpot(std::string date) const;
 
     /**
      * @brief Print all the spots
      */
-    void printSpots();
+    void printSpots() const;
 
     /**
      * @brief Clear all the spots

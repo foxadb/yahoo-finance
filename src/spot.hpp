@@ -54,48 +54,48 @@ public:
      * @brief Date getter
      * @return Spot date
      */
-    std::time_t getDate();
+    std::time_t getDate() const;
 
     /**
      * @brief Date getter
      * @return Spot date
      */
-    std::string getDateToString();
+    std::string getDateToString() const;
 
     /**
      * @brief Open price getter
      * @return Price at opening
      */
-    double getOpen();
+    double getOpen() const;
 
     /**
      * @brief High price getter
      * @return Higher price value
      */
-    double getHigh();
+    double getHigh() const ;
 
     /**
      * @brief Low price getter
      * @return Lower price value
      */
-    double getLow();
+    double getLow() const;
 
     /**
      * @brief Close price getter
      * @return Price at closing
      */
-    double getClose();
+    double getClose() const;
 
     /**
      * @brief Convert Spot into string
      * @return String containing the Spot info
      */
-    std::string toString();
+    std::string toString() const;
 
     /**
      * @brief Print the spots
      */
-    void printSpot();
+    void printSpot() const;
 
 private:
 
