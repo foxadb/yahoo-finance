@@ -10,7 +10,7 @@
  * @param crumb Crumb pointer
  * @param cookie Cookie pointer
  */
-void saveYahooCredentials(const char* filename, const std::string &crumb, const std::string &cookie);
+void saveYahooCredentials(const char* filename, const std::string& crumb, const std::string& cookie);
 
 /**
  * @brief Read the cookie last update time in the save file
@@ -24,14 +24,14 @@ std::time_t readCookieTime(const char* filename);
  * @param filename Name of the save file
  * @param crumb Crumb
  */
-void readCrumbCredential(const char* filename, std::string &crumb);
+void readCrumbCredential(const char* filename, std::string& crumb);
 
 /**
  * @brief Read the cookie value from the save file
  * @param filename Name of the save file
  * @param cookie Cookie pointer
  */
-void readCookieCredential(const char* filename, std::string &cookie);
+void readCookieCredential(const char* filename, std::string& cookie);
 
 /**
  * @brief Write callback function for Curl
@@ -49,7 +49,7 @@ size_t writeCallback(char *content, size_t size, size_t nmemb, void *userdata);
  * @param crumb Crumb pointer
  * @param cookie Cookie pointer
  */
-void getYahooCrumbCookie(const std::string& url, std::string &crumb, std::string &cookie);
+void getYahooCrumbCookie(const std::string& url, std::string& crumb, std::string& cookie);
 
 /**
  * @brief Extract the Yahoo crumb value from the response code
@@ -82,7 +82,7 @@ std::string downloadYahooCsv(std::string symbol,
                              std::time_t period1,
                              std::time_t period2,
                              std::string interval,
-                             const std::string &crumb,
-                             const std::string &cookie);
+                             const std::string& crumb,
+                             const std::string& cookie);
 
 #endif /* CURL_UTILS_HPP */

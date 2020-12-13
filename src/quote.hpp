@@ -16,7 +16,7 @@ public:
      * @brief Quote constructor
      * @param symbol
      */
-    Quote(std::string symbol);
+    Quote(const std::string& symbol);
 
     /**
      * @brief Quote destructor
@@ -48,7 +48,7 @@ public:
      * @param date Spot date
      * @return spots(date)
      */
-    Spot getSpot(std::string date) const;
+    Spot getSpot(const std::string& date) const;
 
     /**
      * @brief Print all the spots

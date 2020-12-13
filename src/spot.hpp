@@ -29,7 +29,7 @@ public:
      * @param low Lowest price value
      * @param close Price at closing
      */
-    Spot(std::string date, double open, double high, double low, double close);
+    Spot(const std::string& date, double open, double high, double low, double close);
 
     /**
     *@brief Spot constructor
@@ -43,7 +43,7 @@ public:
     * @param date Spot date
     * @param price Price at closing
     */
-    Spot(std::string date, double price);
+    Spot(const std::string& date, double price);
 
     /**
      * @brief Quote destructor

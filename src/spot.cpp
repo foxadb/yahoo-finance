@@ -12,7 +12,7 @@ Spot::Spot(std::time_t date, double open, double high, double low, double close)
     this->close = close;
 }
 
-Spot::Spot(std::string date, double open, double high, double low, double close) {
+Spot::Spot(const std::string& date, double open, double high, double low, double close) {
     this->date = dateToEpoch(date.c_str());
     this->open = open;
     this->high = high;
@@ -28,7 +28,7 @@ Spot::Spot(std::time_t date, double price){
   this->low = price;
 }
 
-Spot::Spot(std::string date, double price){
+Spot::Spot(const std::string& date, double price){
   this->date = dateToEpoch(date.c_str());
   this->close = price;
   this->open = price;

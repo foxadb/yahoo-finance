@@ -6,7 +6,7 @@
 #include <fstream>
 #include <boost/algorithm/string/replace.hpp>
 
-void saveYahooCredentials(const char* filename, const std::string &crumb, const std::string &cookie) {
+void saveYahooCredentials(const char* filename, const std::string& crumb, const std::string& cookie) {
     // Open cookie file
     std::ofstream file(filename);
 
@@ -30,7 +30,7 @@ std::time_t readCookieTime(const char* filename) {
     return date;
 }
 
-void readCrumbCredential(const char* filename, std::string &crumb) {
+void readCrumbCredential(const char* filename, std::string& crumb) {
     // Open cookie file
     std::ifstream file(filename);
 
@@ -40,7 +40,7 @@ void readCrumbCredential(const char* filename, std::string &crumb) {
     file >> crumb;
 }
 
-void readCookieCredential(const char* filename, std::string &cookie) {
+void readCookieCredential(const char* filename, std::string& cookie) {
     // Open cookie file
     std::ifstream file(filename);
 
@@ -65,8 +65,8 @@ size_t writeCallback(char *content, size_t size, size_t nmemb, void *userdata) {
 }
 
 void getYahooCrumbCookie(const std::string& url,
-                         std::string &crumb,
-                         std::string &cookie) {
+                         std::string& crumb,
+                         std::string& cookie) {
     const char* credentialFile = "/tmp/yahoo-finance-credentials";
     const char* cookieFile = "/tmp/yahoo-finance-cookie";
 
@@ -143,8 +143,8 @@ std::string downloadYahooCsv(std::string symbol,
                              std::time_t period1,
                              std::time_t period2,
                              std::string interval,
-                             const std::string &crumb,
-                             const std::string &cookie) {
+                             const std::string& crumb,
+                             const std::string& cookie) {
     std::stringstream ss1;
     ss1 << period1;
     std::stringstream ss2;

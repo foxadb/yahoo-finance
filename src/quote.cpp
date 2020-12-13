@@ -10,7 +10,7 @@
 #include <stdexcept>
 #include <boost/algorithm/string.hpp>
 
-Quote::Quote(std::string symbol) {
+Quote::Quote(const std::string& symbol) {
     this->symbol = symbol;
 }
 
@@ -44,7 +44,7 @@ Spot Quote::getSpot(std::time_t date) const {
     throw std::invalid_argument(error);
 }
 
-Spot Quote::getSpot(std::string date) const {
+Spot Quote::getSpot(const std::string& date) const {
     for (std::vector<Spot>::const_iterator it = this->spots.cbegin();
          it != this->spots.cend();
          ++it) {
