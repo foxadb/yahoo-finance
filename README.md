@@ -6,8 +6,7 @@ C++ library to get stock data from Yahoo Finance.
 
 ## Dependencies
 
-- cmake >= 3.6.1
-- boost
+- cmake >= 3.6.3
 - curl
 
 ## Build
