@@ -6,11 +6,14 @@ C++ library to get stock data from Yahoo Finance.
 
 ## Dependencies
 
+To use the project, you'll need to install the following dependencies:
+- c++11
 - cmake >= 3.6.3
 - curl
 
 ## Build
 
+Build the code using CMake by running the following commands in order:
 ```
 mkdir build
 cd build
@@ -20,9 +23,14 @@ make
 
 ## Unit Tests
 
-Boost Unit Tests:
+Launch unit tests using [googletest](https://github.com/google/googletest).
 ```
 make test
+```
+
+To recompile the project before running the tests, just run:
+```
+make all test
 ```
 
 ## Usage
