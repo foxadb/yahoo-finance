@@ -26,9 +26,11 @@ add_subdirectory(
 # Include sources directory
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
-# Create test executables
-add_executable(testTimeUtils testTimeUtils.cpp)
-target_link_libraries(testTimeUtils yahoo-finance curl gtest_main)
-
-add_executable(testQuote testQuote.cpp)
-target_link_libraries(testQuote yahoo-finance curl gtest_main)
+# Create executables for each test file
+file(GLOB TEST_SOURCES RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
+foreach(TEST_SOURCE_FILE ${TEST_SOURCES})
+    string(REPLACE ".cpp" "" TEST_NAME ${TEST_SOURCE_FILE})
+    add_executable(${TEST_NAME} ${TEST_SOURCE_FILE})
+    target_link_libraries(${TEST_NAME} yahoo-finance curl gtest_main)
+    add_test(NAME ${TEST_NAME} COMMAND ${TEST_NAME})
+endforeach(TEST_SOURCE_FILE ${TEST_SOURCES})

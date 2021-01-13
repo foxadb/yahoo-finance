@@ -16,8 +16,6 @@ add_subdirectory(doc)
 add_executable(example src/example.cpp)
 target_link_libraries(example yahoo-finance curl)
 
-# Build tests
-add_subdirectory(test)
+# Build tests and enable CTest
 enable_testing()
-add_test(NAME TimeUtilsTest COMMAND testTimeUtils)
-add_test(NAME QuoteTest COMMAND testQuote)
+add_subdirectory(test)
