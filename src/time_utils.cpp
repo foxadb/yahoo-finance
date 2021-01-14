@@ -27,7 +27,7 @@ std::time_t dateToEpoch(const char *date) {
 }
 
 std::string epochToDate(const std::time_t epoch) {
-    struct std::tm * ptm = std::localtime(&epoch);
+    struct std::tm * ptm = std::gmtime(&epoch);
     std::stringstream osYear;
     osYear << ptm->tm_year + 1900;
 
