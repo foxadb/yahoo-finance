@@ -3,11 +3,8 @@
 #include "curl_utils.hpp"
 
 #include <iostream>
-#include <string>
 #include <sstream>
 #include <curl/curl.h>
-#include <ctime>
-#include <stdexcept>
 
 Quote::Quote(std::string symbol) {
     this->symbol = symbol;
@@ -67,30 +64,12 @@ void Quote::clearSpots() {
     this->spots.clear();
 }
 
-std::string Quote::getHistoricalCsv(std::time_t period1,
-                                    std::time_t period2,
-                                    const char *interval) {
-    std::string url = "https://finance.yahoo.com/quote/"
-            + this->symbol
-            + "/?p="
-            + this->symbol;
-
-    std::string *crumb = new std::string;
-    std::string *cookie = new std::string;
-
-    // Get the Crumb and Cookie from Yahoo Finance
-    getYahooCrumbCookie(url, crumb, cookie);
-
-    // Download the historical prices Csv
-    std::string csv = downloadYahooCsv(
-                this->symbol, period1, period2, interval, crumb, cookie);
-
-    // Free memory
-    delete crumb;
-    delete cookie;
-
-    // Return the csv
-    return csv;
+std::string Quote::getHistoricalCsv(
+    std::time_t period1,
+    std::time_t period2,
+    const char *interval
+) {
+    return downloadYahooCsv(this->symbol, period1, period2, interval);
 }
 
 void Quote::getHistoricalSpots(std::time_t period1,
