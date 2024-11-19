@@ -4,6 +4,10 @@
 #include <string>
 #include <ctime>
 
+#ifdef _WIN32
+#define timegm _mkgmtime
+#endif
+
 /**
  * @brief Current Epoch time (POSIX timestamp)
  * @return The current POSIX timestamp
