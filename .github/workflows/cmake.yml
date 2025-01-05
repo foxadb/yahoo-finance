@@ -7,14 +7,16 @@ env:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v2
 
     - name: Install libcurl
       # Project requires libcurl so we need to install it before building
-      run: sudo apt-get install libcurl4-openssl-dev
+      run: |
+        sudo apt-get update
+        sudo apt-get install libcurl4-openssl-dev
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build
